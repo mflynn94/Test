@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OS Vector Tile API | Basic Map (EPSG:3857) | Leaflet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://labs.os.uk/public/os-api-branding/v0.1.0/os-api-branding.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" />
+    <link rel="stylesheet" href="leaflet-routing-machine.css" />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://labs.os.uk/public/os-api-branding/v0.1.0/os-api-branding.js"></script>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
+<script src="https://unpkg.com/mapbox-gl-leaflet/leaflet-mapbox-gl.js"></script>
+<script src="leaflet-routing-machine.js"></script>
+<script>
+
+    var apiKey = 'of0EuxSCCErtwGnfcSwGEP4vsBAWUQ4i';
+
+    var serviceUrl = 'https://osdatahubapi.os.uk/OSVectorTileAPI/vts/v1';
+
+    // Initialize the map.
+    var mapOptions = {
+        center: [ 57.5, -4.1827 ],
+        zoom: 7,
+        attributionControl: false
+    };
+
+    var map = L.map('map', mapOptions);
+
+    // Load and display vector tile layer on the map.
+    var gl = L.mapboxGL({
+        accessToken: 'no-token',
+        style: serviceUrl + '/resources/styles',
+        transformRequest: url => {
+            url += '?key=' + apiKey + '&srs=3857';
+            return {
+                url: url
+            }
+        }
+    }).addTo(map);
+
+L.Routing.control({
+    waypoints: [
+        L.latLng(55.8642, -4.2518),
+        L.latLng(55.9533, -3.1883)
+    ],
+    routeWhileDragging: true
+}).addTo(map);
+
+</script>
+
+</body>
+</html>
