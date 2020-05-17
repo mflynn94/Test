@@ -122,24 +122,25 @@
        // });
     //});
 
-    // L.geoJSON(geojsonFeature, {
-     //   pointToLayer: function (feature, latlng) {
-      //      return L.circleMarker(latlng, geojsonMarkerOptions);
-      //  }
-   // }).addTo(map);
+    var gFeature = {
+        "type": "Feature",
+        "properties": {
+            "name": "Coors Field",
+            "amenity": "Baseball Stadium",
+            "popupContent": "This is where the Rockies play!"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-4, 55]
+        }
+    };
     
- // var geojsonFeature = {
-        //"type": "Feature",
-        //"properties": {
-           // "name": "Coors Field",
-          //  "amenity": "Baseball Stadium",
-         //   "popupContent": "This is where the Rockies play!"
-        //},
-       // "geometry": {
-      //      "type": "Point",
-     //       "coordinates": [-4, 55]
-    //    }
-   // };
+     L.geoJSON(gFeature, {
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, geojsonMarkerOptions);
+        }
+    }).addTo(map);
+   
     
 </script>
 
