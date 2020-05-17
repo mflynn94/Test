@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://labs.os.uk/public/os-api-branding/v0.1.0/os-api-branding.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" />
-    <link rel="stylesheet" href="leaflet-routing-machine.css" />
+    
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -21,11 +21,11 @@
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
 <script src="https://unpkg.com/mapbox-gl-leaflet/leaflet-mapbox-gl.js"></script>
-<script src="leaflet-routing-machine.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
 <script>
 
     var apiKey = 'of0EuxSCCErtwGnfcSwGEP4vsBAWUQ4i';
-
     var serviceUrl = 'https://osdatahubapi.os.uk/OSVectorTileAPI/vts/v1';
 
     // Initialize the map.
@@ -48,15 +48,99 @@
             }
         }
     }).addTo(map);
+  
+    var url = "Processed_Pharmacies_Test.js"
+    var url2 = "Test.js"
+   
+    var geojsonMarkerOptions = {
+        radius: 8,
+        fillColor: "#ff7800",
+        color: "#000",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+    };
 
-L.Routing.control({
-    waypoints: [
-        L.latLng(55.8642, -4.2518),
-        L.latLng(55.9533, -3.1883)
-    ],
-    routeWhileDragging: true
-}).addTo(map);
+    
+    function onEachFeature(feature, layer) {
+            var popupContent = "<p>The <b>" +
+                    feature.properties.Address2 + "</b> play here,</br> They are in the " +
+                    feature.properties.Address2 + "</br>";
+                   
+    };
+    
+  
+    
+    
+    $.getJSON(url, function(data) {
+       L.geoJson(data, {
+                 onEachFeature: onEachFeature,
+                 pointToLayer: function (feature, latlng) {
+                     return L.circleMarker(latlng, geojsonMarkerOptions);
+        }
+        }).addTo(map);
+    })
 
+    $.getJSON(url2, function(geojsonFeature) {
+        L.geoJSON(geojsonFeature, {
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, geojsonMarkerOptions);
+        }
+        }).addTo(map);
+    })
+
+ //   var pharmacyPoints = L.geoJSON(null, {
+  //        onEachFeature: forEachFeature,
+   //       pointToLayer: function (feature, latlng) {
+    //          return L.circleMarker(latlng, geojsonMarkerOptions);
+    //      }
+            
+   // $.getJSON(url, function(data) {
+ //       pharmacyPoints.addData(data);
+  //  });
+    
+ //   pharmacyPoints.addTo(map);
+    
+    
+   // L.geoJson(geojsonFeature).addTo(map);
+    
+    
+//    var geojson = L.geoJSON(Pharmacies).addTo(map);
+
+//var dataUrl = "Code/processedpharmaciestest.js";
+    
+//var geojson = L.geoJSON(myGeoJson).addTo(map);
+//   $.getJSON(dataUrl,function(data){
+//   L.geoJson(data).addTo(map);
+//   });
+   // L.geoJSON(dataset).addTo(map);
+    
+     // getJSON(url, function(data) {
+    //    each(data, function(i, item) {
+     //       //console.log(item);
+      //      return L.marker(latlng, geojsonMarkerOptions).addTo(map);
+       // });
+    //});
+
+    // L.geoJSON(geojsonFeature, {
+     //   pointToLayer: function (feature, latlng) {
+      //      return L.circleMarker(latlng, geojsonMarkerOptions);
+      //  }
+   // }).addTo(map);
+    
+ // var geojsonFeature = {
+        //"type": "Feature",
+        //"properties": {
+           // "name": "Coors Field",
+          //  "amenity": "Baseball Stadium",
+         //   "popupContent": "This is where the Rockies play!"
+        //},
+       // "geometry": {
+      //      "type": "Point",
+     //       "coordinates": [-4, 55]
+    //    }
+   // };
+    
 </script>
 
 </body>
