@@ -1,4 +1,4 @@
-var Pharmacies = {
+var data = {
   "type": "FeatureCollection",
   "features": [
     {
