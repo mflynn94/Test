@@ -51,7 +51,6 @@
     }).addTo(map);
   
     var url = "Processed_Pharmacies_Test.js"
-    var url2 = "Test.js"
    
     var geojsonMarkerOptions = {
         radius: 8,
@@ -61,74 +60,13 @@
         opacity: 1,
         fillOpacity: 0.8
     };
-
     
      L.geoJSON(data, {
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, geojsonMarkerOptions);
         }
     }).addTo(map);
-    
-    //function onEachFeature(feature, layer) {
-    //        var popupContent = "<p>The <b>" +
-    //                feature.properties.Address2 + "</b> play here,</br> They are in the " +
-    //                feature.properties.Address2 + "</br>";
-                   
-    //};
-    
-  
-    
-    
-   // $.getJSON(url, function(data) {
-    //   L.geoJson(data, {
-     //            onEachFeature: onEachFeature,
-      //           pointToLayer: function (feature, latlng) {
-       //              return L.circleMarker(latlng, geojsonMarkerOptions);
-        //}
-      //  }).addTo(map);
-    //})
-
-    //$.getJSON(url2, function(geojsonFeature) {
-     //   L.geoJson(geojsonFeature, {
-      //      pointToLayer: function (feature, latlng) {
-       //         return L.circleMarker(latlng, geojsonMarkerOptions);
-       // }
-        //}).addTo(map);
-    //})
-
- //   var pharmacyPoints = L.geoJSON(null, {
-  //        onEachFeature: forEachFeature,
-   //       pointToLayer: function (feature, latlng) {
-    //          return L.circleMarker(latlng, geojsonMarkerOptions);
-    //      }
-            
-   // $.getJSON(url, function(data) {
- //       pharmacyPoints.addData(data);
-  //  });
-    
- //   pharmacyPoints.addTo(map);
-    
-    
-   // L.geoJson(geojsonFeature).addTo(map);
-    
-    
-//    var geojson = L.geoJSON(Pharmacies).addTo(map);
-
-//var dataUrl = "Code/processedpharmaciestest.js";
-    
-//var geojson = L.geoJSON(myGeoJson).addTo(map);
-//   $.getJSON(dataUrl,function(data){
-//   L.geoJson(data).addTo(map);
-//   });
-   // L.geoJSON(dataset).addTo(map);
-    
-     // getJSON(url, function(data) {
-    //    each(data, function(i, item) {
-     //       //console.log(item);
-      //      return L.marker(latlng, geojsonMarkerOptions).addTo(map);
-       // });
-    //});
-
+ 
    
    
     
