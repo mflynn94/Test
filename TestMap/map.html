@@ -22,6 +22,7 @@
 <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
 <script src="https://unpkg.com/mapbox-gl-leaflet/leaflet-mapbox-gl.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="Test.js"></script>
     
 <script>
 
@@ -74,7 +75,7 @@
         }
     };
     
-     L.geoJSON(gFeature, {
+     L.geoJSON(geojsonFeature, {
         pointToLayer: function (feature, latlng) {
             return L.circleMarker(latlng, geojsonMarkerOptions);
         }
