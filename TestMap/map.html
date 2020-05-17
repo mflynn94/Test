@@ -62,18 +62,6 @@
         fillOpacity: 0.8
     };
 
-     var gFeature = {
-        "type": "Feature",
-        "properties": {
-            "name": "Coors Field",
-            "amenity": "Baseball Stadium",
-            "popupContent": "This is where the Rockies play!"
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-4, 55]
-        }
-    };
     
      L.geoJSON(geojsonFeature, {
         pointToLayer: function (feature, latlng) {
