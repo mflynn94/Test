@@ -82,7 +82,7 @@
     })
 
     $.getJSON(url2, function(geojsonFeature) {
-        L.geoJSON(geojsonFeature, {
+        L.geoJson(geojsonFeature, {
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, geojsonMarkerOptions);
         }
