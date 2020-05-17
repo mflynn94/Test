@@ -61,33 +61,51 @@
         fillOpacity: 0.8
     };
 
-    
-    function onEachFeature(feature, layer) {
-            var popupContent = "<p>The <b>" +
-                    feature.properties.Address2 + "</b> play here,</br> They are in the " +
-                    feature.properties.Address2 + "</br>";
-                   
+     var gFeature = {
+        "type": "Feature",
+        "properties": {
+            "name": "Coors Field",
+            "amenity": "Baseball Stadium",
+            "popupContent": "This is where the Rockies play!"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [-4, 55]
+        }
     };
+    
+     L.geoJSON(gFeature, {
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, geojsonMarkerOptions);
+        }
+    }).addTo(map);
+    
+    //function onEachFeature(feature, layer) {
+    //        var popupContent = "<p>The <b>" +
+    //                feature.properties.Address2 + "</b> play here,</br> They are in the " +
+    //                feature.properties.Address2 + "</br>";
+                   
+    //};
     
   
     
     
-    $.getJSON(url, function(data) {
-       L.geoJson(data, {
-                 onEachFeature: onEachFeature,
-                 pointToLayer: function (feature, latlng) {
-                     return L.circleMarker(latlng, geojsonMarkerOptions);
-        }
-        }).addTo(map);
-    })
+   // $.getJSON(url, function(data) {
+    //   L.geoJson(data, {
+     //            onEachFeature: onEachFeature,
+      //           pointToLayer: function (feature, latlng) {
+       //              return L.circleMarker(latlng, geojsonMarkerOptions);
+        //}
+      //  }).addTo(map);
+    //})
 
-    $.getJSON(url2, function(geojsonFeature) {
-        L.geoJson(geojsonFeature, {
-            pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, geojsonMarkerOptions);
-        }
-        }).addTo(map);
-    })
+    //$.getJSON(url2, function(geojsonFeature) {
+     //   L.geoJson(geojsonFeature, {
+      //      pointToLayer: function (feature, latlng) {
+       //         return L.circleMarker(latlng, geojsonMarkerOptions);
+       // }
+        //}).addTo(map);
+    //})
 
  //   var pharmacyPoints = L.geoJSON(null, {
   //        onEachFeature: forEachFeature,
@@ -122,24 +140,7 @@
        // });
     //});
 
-    var gFeature = {
-        "type": "Feature",
-        "properties": {
-            "name": "Coors Field",
-            "amenity": "Baseball Stadium",
-            "popupContent": "This is where the Rockies play!"
-        },
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-4, 55]
-        }
-    };
-    
-     L.geoJSON(gFeature, {
-        pointToLayer: function (feature, latlng) {
-            return L.circleMarker(latlng, geojsonMarkerOptions);
-        }
-    }).addTo(map);
+   
    
     
 </script>
